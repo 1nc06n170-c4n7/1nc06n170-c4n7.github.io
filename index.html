@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amajon Order</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="dropdown-alert"></div>
+    <header>
+        <h1><img class="logo" src="logo.png"></image></h1>
+    </header>
+
+    <main>
+        <p class="greeting">Henlo tiyamisu :D</p>
+
+        <div class="item">
+            <span class="quantity" id="qty-choco">3</span>
+            <button class="minus" data-id="choco">-</button>
+            <img src="choco.png" alt="Chocolate">
+            <button class="plus" data-id="choco">+</button>
+        </div>
+
+        <div class="item">
+            <span class="quantity" id="qty-rose">2</span>
+            <button class="minus" data-id="rose">-</button>
+            <img src="rose.png" alt="Rose">
+            <button class="plus" data-id="rose">+</button>
+        </div>
+
+        <p class="greeting">Delivery instructions</p>
+        <input type="text" id="delivery-instructions" placeholder="Leave a cute note for the delivery boi..." />
+        <div class="extras">
+            <div class="extra-item" onclick="showDropdownMessage('Could you really say no to that?')">
+                <input type="checkbox" checked disabled>
+                <span>some random drunk written letter</span>
+            </div>
+            <div class="extra-item" onclick="showDropdownMessage('Darling please')">
+                <input type="checkbox" checked disabled>
+                <span>cute ass delivery boi</span>
+            </div>
+        </div>
+                
+        <button id="place-order">PLACE ORDER</button>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
